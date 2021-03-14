@@ -70,7 +70,7 @@ int main (void) {
 		result =  -adc_get_result(&MY_ADC, MY_ADC_CH);
 		resultconv = (result * ADC_VREFmV)/(ADC_TOP_VALUE+1);
 		resultconv /= ADC_GAIN;
-		printf(" %d   \n\r" ,result);
+		printf(" %d   \n\r" ,result); //test commit
 		//printf("%d %ld \n\r",result, resultconv);
 		delay_ms(250);
 
