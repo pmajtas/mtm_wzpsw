@@ -15,21 +15,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000218  00000000  00000000  00001940  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000098cb  00000000  00000000  00001b58  2**0
+  6 .debug_info   000098bb  00000000  00000000  00001b58  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000042cc  00000000  00000000  0000b423  2**0
+  7 .debug_abbrev 000042cc  00000000  00000000  0000b413  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00003bd5  00000000  00000000  0000f6ef  2**0
+  8 .debug_line   00003bd5  00000000  00000000  0000f6df  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000780  00000000  00000000  000132c4  2**2
+  9 .debug_frame  00000780  00000000  00000000  000132b4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0002fa34  00000000  00000000  00013a44  2**0
+ 10 .debug_str    0002fa33  00000000  00000000  00013a34  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000026e1  00000000  00000000  00043478  2**0
+ 11 .debug_loc    000026a1  00000000  00000000  00043467  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000250  00000000  00000000  00045b60  2**3
+ 12 .debug_ranges 00000250  00000000  00000000  00045b08  2**3
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  0000a647  00000000  00000000  00045db0  2**0
+ 13 .debug_macro  0000a647  00000000  00000000  00045d58  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2865,11 +2865,11 @@ static inline bool usart_serial_init(usart_if usart, const
      eba:	54 d0       	rcall	.+168    	; 0xf64 <fdevopen>
      ebc:	88 e0       	ldi	r24, 0x08	; 8
      ebe:	80 93 81 06 	sts	0x0681, r24	; 0x800681 <__TEXT_REGION_LENGTH__+0x7be681>
+	
 
 	
 	
 	int16_t result;
-	int32_t  resultconv;
 	adc_enable(&MY_ADC);
      ec2:	80 e0       	ldi	r24, 0x00	; 0
      ec4:	92 e0       	ldi	r25, 0x02	; 2
@@ -2890,11 +2890,11 @@ static inline void adc_clear_interrupt_flag(ADC_t *adc, uint8_t ch_mask)
 	adc->INTFLAGS = ch_mask << ADC_CH0IF_bp;
      ecc:	dd 24       	eor	r13, r13
      ece:	d3 94       	inc	r13
+	while(1) {
+		
 		adc_start_conversion(&MY_ADC, MY_ADC_CH);
 		adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
 		result =  -adc_get_result(&MY_ADC, MY_ADC_CH);
-		resultconv = (result * ADC_VREFmV)/(ADC_TOP_VALUE+1);
-		resultconv /= ADC_GAIN;
 		printf(" %d   \n\r" ,result);
      ed0:	0f 2e       	mov	r0, r31
      ed2:	fd e0       	ldi	r31, 0x0D	; 13
@@ -2961,8 +2961,6 @@ static inline void adc_clear_interrupt_flag(ADC_t *adc, uint8_t ch_mask)
 		adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
 		result =  -adc_get_result(&MY_ADC, MY_ADC_CH);
      ef8:	84 a1       	ldd	r24, Z+36	; 0x24
-		resultconv = (result * ADC_VREFmV)/(ADC_TOP_VALUE+1);
-		resultconv /= ADC_GAIN;
 		printf(" %d   \n\r" ,result);
      efa:	95 a1       	ldd	r25, Z+37	; 0x25
      efc:	91 95       	neg	r25
@@ -2972,7 +2970,6 @@ static inline void adc_clear_interrupt_flag(ADC_t *adc, uint8_t ch_mask)
      f04:	8f 93       	push	r24
      f06:	ff 92       	push	r15
      f08:	ef 92       	push	r14
-		//printf("%d %ld \n\r",result, resultconv);
 		delay_ms(250);
      f0a:	76 d0       	rcall	.+236    	; 0xff8 <printf>
      f0c:	66 e8       	ldi	r22, 0x86	; 134
