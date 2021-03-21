@@ -8,7 +8,7 @@
 #define ADC_TOP_VALUE 2047
 #define ADC_REF_VOLTAGE_mV 1000
 #define ADC_GAIN 64
-#define SAMPLES_PER_MEASUREMENT 2048
+#define SAMPLES_PER_MEASUREMENT 1024
 
 
 static void adc_init(void)
@@ -62,7 +62,8 @@ int main (void) {
 		result /= SAMPLES_PER_MEASUREMENT;
 		result_mv = (result * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1));
 		result_mv /= ADC_GAIN;
-		result_mg = 128571.0*(result-6.787) - 15571.4;
+		result_mg = 123808.0*result -845345.0;
+		//result_mg = 128571.0*(result-6.787) - 15571.4;
 		sprintf(ucresult, "%f",result_mg);
 		pcDot = strchr(ucresult, '.');
 	
