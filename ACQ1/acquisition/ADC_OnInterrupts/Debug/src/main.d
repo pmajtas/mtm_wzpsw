@@ -55,6 +55,7 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/xmega/utils/status_codes.h \
  ../src/ASF/common/services/serial/xmega_usart/usart_serial.h \
  ../src/ASF/xmega/drivers/usart/usart.h ../src/config/conf_usart_serial.h \
+ ../src/ASF/xmega/drivers/tc/tc.h \
  d:\agh\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h
 
 ../src/asf.h:
@@ -182,5 +183,7 @@ d:\agh\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\std
 ../src/ASF/xmega/drivers/usart/usart.h:
 
 ../src/config/conf_usart_serial.h:
+
+../src/ASF/xmega/drivers/tc/tc.h:
 
 d:\agh\atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:

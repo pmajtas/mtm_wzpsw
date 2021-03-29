@@ -56,10 +56,12 @@ int main (void) {
 	
 	unsigned long result, resultconv;
 	adc_enable(&MY_ADC);
+	char cDemand;
 		
 	
 	while(1) {
 		
+		scanf("%c", &cDemand); //czekanie na jakis znak
 		adc_start_conversion(&MY_ADC, MY_ADC_CH);
 		adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
 		result = adc_get_result(&MY_ADC, MY_ADC_CH);

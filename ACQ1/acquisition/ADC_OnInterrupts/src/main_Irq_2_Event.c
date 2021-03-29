@@ -9,20 +9,10 @@
 #define ADC_REF_VOLTAGE_mV 3300
 #define ADC_GAIN 1
 
-#define MY_TIMER TCC0
-
-static void tc_init(void)
-{
-	tc_enable(&MY_TIMER); //wlaczenie timera
-	tc_set_wgm(&MY_TIMER, TC_WG_NORMAL); //konfiguruje TC na tryb normalny
-	tc_write_period(&MY_TIMER, 50000); //chcemy miec 10Hz czyli okres 50kHz
-	tc_set_resolution(&MY_TIMER, 500000); //rozdzielczosc Timera
-}
-
 static void evsys_init(void)
 {
 	sysclk_enable_module(SYSCLK_PORT_GEN, SYSCLK_EVSYS);
-	EVSYS.CH0MUX = EVSYS_CHMUX_TCC0_OVF_gc; //
+	EVSYS.CH0MUX = EVSYS_CHMUX_OFF_gc;  //turn off event channel multiplexer
 
 }
 
@@ -56,7 +46,6 @@ int main (void) {
 	
 	sysclk_init();
 	evsys_init();
-	tc_init();
 	adc_init();	
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
@@ -67,6 +56,7 @@ int main (void) {
 		
 	while(1) {	
 		
+			EVSYS_STROBE = 0x01; //rêczne wywo³anie przerwania
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
 			result =  adc_get_unsigned_result(&MY_ADC, MY_ADC_CH);
 			printf(" %d  \n\r" ,result);

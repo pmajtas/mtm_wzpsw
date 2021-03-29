@@ -6,6 +6,8 @@ src\ASF\common\utils\stdio\read.c
 
 src\ASF\xmega\drivers\adc\adc.c
 
+src\ASF\xmega\drivers\tc\tc.c
+
 src\ASF\xmega\drivers\usart\usart.c
 
 src\ASF\xmega\drivers\adc\xmega_aau\adc_aau.c

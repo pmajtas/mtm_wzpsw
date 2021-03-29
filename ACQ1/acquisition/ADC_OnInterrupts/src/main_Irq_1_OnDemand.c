@@ -9,22 +9,6 @@
 #define ADC_REF_VOLTAGE_mV 3300
 #define ADC_GAIN 1
 
-#define MY_TIMER TCC0
-
-static void tc_init(void)
-{
-	tc_enable(&MY_TIMER); //wlaczenie timera
-	tc_set_wgm(&MY_TIMER, TC_WG_NORMAL); //konfiguruje TC na tryb normalny
-	tc_write_period(&MY_TIMER, 50000); //chcemy miec 10Hz czyli okres 50kHz
-	tc_set_resolution(&MY_TIMER, 500000); //rozdzielczosc Timera
-}
-
-static void evsys_init(void)
-{
-	sysclk_enable_module(SYSCLK_PORT_GEN, SYSCLK_EVSYS);
-	EVSYS.CH0MUX = EVSYS_CHMUX_TCC0_OVF_gc; //
-
-}
 
 static void adc_init(void)
 {
@@ -34,9 +18,10 @@ static void adc_init(void)
 	adc_read_configuration(&MY_ADC, &adc_conf); //czyta aktualn¹ konfiguracje wskazanego adc i zapisuje j¹ do bufora pod wskazanym adresem
 	adcch_read_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf); //czyta aktualn¹ konfiguracje wskazanego kana³u adc i zapisuje j¹ do bufora pod wskazanym adresem
 	
-	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_OFF, ADC_RES_8, ADC_REF_AREFA); //pod wskazan¹ konfiguracjê wpisujemy: wynik bez znaku, rozdzielczoœæ 8 bitów,  vref zewnêtrzny z portu A; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
-	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_EVENT_SINGLE, 1, 0); 
-	adc_set_clock_rate(&adc_conf, 500000UL);
+	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_OFF, ADC_RES_8,
+	ADC_REF_AREFA); //pod wskazan¹ konfiguracjê wpisujemy: wynik bez znaku, rozdzielczoœæ 8 bitów,  vref zewnêtrzny z portu A; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
+	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
+	adc_set_clock_rate(&adc_conf, 200000UL);
 	adcch_set_input(&adcch_conf, ADCCH_POS_PIN1, ADCCH_NEG_NONE, ADC_GAIN);
 	
 	adc_write_configuration(&MY_ADC, &adc_conf);
@@ -45,6 +30,8 @@ static void adc_init(void)
 
 int main (void) {
 	
+	sysclk_init();
+	adc_init();
 	
 	static usart_rs232_options_t USART_SERIAL_OPTIONS = {
 		.baudrate = 9600,
@@ -53,23 +40,17 @@ int main (void) {
 		.stopbits = false
 	};
 	
-	
-	sysclk_init();
-	evsys_init();
-	tc_init();
-	adc_init();	
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
 	
-	
 	unsigned char result;
 	adc_enable(&MY_ADC);
-		
-	while(1) {	
-		
+	
+	
+	while(1) {
+			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			result =  adc_get_unsigned_result(&MY_ADC, MY_ADC_CH);
+			result =  adc_get_result(&MY_ADC, MY_ADC_CH);
 			printf(" %d  \n\r" ,result);
-
 	}
 }

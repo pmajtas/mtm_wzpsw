@@ -32,7 +32,7 @@ static void adc_init(void)
 	
 	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_ON, ADC_RES_12,
 	ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
-	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 2, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
+	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
 	adc_set_clock_rate(&adc_conf, 200000UL);
 	adcch_set_input(&adcch_conf, ADCCH_POS_PIN5, ADCCH_NEG_PIN1, ADC_GAIN); 
 	
@@ -58,16 +58,18 @@ int main (void) {
 
 	
 	
-	int16_t result;
+	int16_t iResult;
+	char cDemand;
 	adc_enable(&MY_ADC);
 		
 	
 	while(1) {
 		
+		scanf("%c", &cDemand); //czekanie na jakis znak
 		adc_start_conversion(&MY_ADC, MY_ADC_CH);
 		adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-		result =  -adc_get_result(&MY_ADC, MY_ADC_CH);
-		printf(" %d   \n\r" ,result);
+		iResult =  -adc_get_signed_result(&MY_ADC, MY_ADC_CH);
+		printf(" %d   \n\r" ,iResult);
 
 	}
 }

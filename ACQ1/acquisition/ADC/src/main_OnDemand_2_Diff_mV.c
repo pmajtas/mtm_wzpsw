@@ -43,22 +43,24 @@ int main (void) {
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
 	
-	float result,result_mv;
+	float fResult=0,fResult_mv;
 	unsigned char ucRepCounter;
+	char cDemand;
 	adc_enable(&MY_ADC);
 		
 	
 	while(1) {
-		result =0 ;
+		
+		scanf("%c", &cDemand); //czekanie na jakis znak
 		for(ucRepCounter=0;ucRepCounter<SAMPLES_PER_MEASUREMENT; ucRepCounter++){
 		
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			result +=  adc_get_signed_result(&MY_ADC, MY_ADC_CH);
-			//delay_ms(250); 
+			fResult +=  adc_get_signed_result(&MY_ADC, MY_ADC_CH);
 		}
-		result /= SAMPLES_PER_MEASUREMENT;
-		result_mv = (result * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1)*ADC_GAIN);
-		printf(" %f   \n\r" ,result_mv);
+		
+		fResult /= SAMPLES_PER_MEASUREMENT;
+		fResult_mv = (fResult * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1)*ADC_GAIN);
+		printf(" %f   \n\r" ,fResult_mv);
 	}
 }

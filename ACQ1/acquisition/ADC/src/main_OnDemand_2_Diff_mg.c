@@ -1,14 +1,24 @@
 #include <asf.h>
 #include <string.h>
 
+
 #define UART_TXPIN IOPORT_CREATE_PIN(PORTE, 3)
 #define MY_ADC    ADCA
 #define MY_ADC_CH ADC_CH0
 
+//ADC config
 #define ADC_TOP_VALUE 2047
 #define ADC_REF_VOLTAGE_mV 1000
 #define ADC_GAIN 64
 #define SAMPLES_PER_MEASUREMENT 1024
+
+//Float to string parameters
+#define  VOLTAGE_STRING_LENGTH 16
+
+//STRAIN parameters
+#define STRAIN_slope_factor 123808.0
+#define STRAIN_offset -845345.0
+#define STRAIN_mV_to_mg (ADC_TOP_VALUE+1)*(ADC_GAIN)/ADC_REF_VOLTAGE_mV *STRAIN_slope_factor 
 
 
 static void adc_init(void)
@@ -44,32 +54,35 @@ int main (void) {
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
 	
-	float result,result_mv,result_mg;
-	char ucresult[15], *pcDot; //8 cyfr przed przecinkiem, 6 po, null
-	unsigned short ucRepCounter;
+	float fResult=0,fResult_mv,fResult_mg;
+	char ucResult[VOLTAGE_STRING_LENGTH], *pcDot; //8 cyfr przed przecinkiem, 6 po, null
+	unsigned short usRepCounter;
+	char cDemand;
 	adc_enable(&MY_ADC);
 		
 	
 	while(1) {
-		result = 0 ;
-		for(ucRepCounter=0;ucRepCounter<SAMPLES_PER_MEASUREMENT; ucRepCounter++){
+		
+		
+		scanf("%c", &cDemand); //czekanie na jakis znak
+		
+		for(usRepCounter=0;usRepCounter<SAMPLES_PER_MEASUREMENT; usRepCounter++){
 		
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			result +=  -adc_get_signed_result(&MY_ADC, MY_ADC_CH);
+			fResult +=  -adc_get_signed_result(&MY_ADC, MY_ADC_CH);
 
 		}
-		result /= SAMPLES_PER_MEASUREMENT;
-		result_mv = (result * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1));
-		result_mv /= ADC_GAIN;
-		result_mg = 123808.0*result -845345.0;
-		//result_mg = 128571.0*(result-6.787) - 15571.4;
-		sprintf(ucresult, "%f",result_mg);
-		pcDot = strchr(ucresult, '.');
-	
+		fResult /= SAMPLES_PER_MEASUREMENT;
+		fResult_mv = (fResult * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1));
+		fResult_mv /= ADC_GAIN;
+		fResult_mg = fResult_mv*STRAIN_mV_to_mg + STRAIN_offset;
+		
+		sprintf(ucResult, "%f",fResult_mg);
+		pcDot = strchr(ucResult, '.');
 		if(pcDot)
 			*pcDot = ',';
 		
-		printf(" %s  \n\r" ,ucresult);
+		printf(" %s  \n\r" ,ucResult);
 	}
 }
