@@ -23,13 +23,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000730  00000000  00000000  00014360  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0002fcac  00000000  00000000  00014a90  2**0
+ 10 .debug_str    0002fcc5  00000000  00000000  00014a90  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000025a9  00000000  00000000  0004473c  2**0
+ 11 .debug_loc    000025a9  00000000  00000000  00044755  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001f8  00000000  00000000  00046ce8  2**3
+ 12 .debug_ranges 000001f8  00000000  00000000  00046d00  2**3
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  0000a67e  00000000  00000000  00046ee0  2**0
+ 13 .debug_macro  0000a684  00000000  00000000  00046ef8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2712,7 +2712,7 @@ int main (void) {
      f00:	df 93       	push	r29
      f02:	cd b7       	in	r28, 0x3d	; 61
      f04:	de b7       	in	r29, 0x3e	; 62
-     f06:	6b 97       	sbiw	r28, 0x1b	; 27
+     f06:	6c 97       	sbiw	r28, 0x1c	; 28
      f08:	cd bf       	out	0x3d, r28	; 61
      f0a:	de bf       	out	0x3e, r29	; 62
 	
@@ -2720,19 +2720,19 @@ int main (void) {
      f0c:	a9 df       	rcall	.-174    	; 0xe60 <sysclk_init>
 static void adc_init(void)
 {
-	struct adc_config adc_conf; //konfiguracja adc 
+	struct adc_config adc_conf; //konfiguracja adc
 	struct adc_channel_config adcch_conf; //konfiguracja kana³u adc  Channels in an ADC is the number of analog values that can be read at the same time.
 	
-	adc_read_configuration(&MY_ADC, &adc_conf); //czyta aktualn¹ konfiguracje wskazanego adc i zapisuje j¹ do bufora pod wskazanym adresem 
+	adc_read_configuration(&MY_ADC, &adc_conf); //czyta aktualn¹ konfiguracje wskazanego adc i zapisuje j¹ do bufora pod wskazanym adresem
      f0e:	be 01       	movw	r22, r28
-     f10:	6f 5e       	subi	r22, 0xEF	; 239
+     f10:	6e 5e       	subi	r22, 0xEE	; 238
      f12:	7f 4f       	sbci	r23, 0xFF	; 255
      f14:	80 e0       	ldi	r24, 0x00	; 0
      f16:	92 e0       	ldi	r25, 0x02	; 2
      f18:	c2 de       	rcall	.-636    	; 0xc9e <adc_read_configuration>
-	adcch_read_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf); //czyta aktualn¹ konfiguracje wskazanego kana³u adc i zapisuje j¹ do bufora pod wskazanym adresem 
+	adcch_read_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf); //czyta aktualn¹ konfiguracje wskazanego kana³u adc i zapisuje j¹ do bufora pod wskazanym adresem
      f1a:	ae 01       	movw	r20, r28
-     f1c:	48 5e       	subi	r20, 0xE8	; 232
+     f1c:	47 5e       	subi	r20, 0xE7	; 231
      f1e:	5f 4f       	sbci	r21, 0xFF	; 255
      f20:	61 e0       	ldi	r22, 0x01	; 1
      f22:	80 e0       	ldi	r24, 0x00	; 0
@@ -2744,13 +2744,13 @@ static inline void adc_set_conversion_parameters(struct adc_config *conf,
 {
 	/* Preserve all but conversion and resolution config. */
 	conf->ctrlb &= ~(ADC_CONMODE_bm | ADC_RESOLUTION_gm);
-     f28:	8a 89       	ldd	r24, Y+18	; 0x12
+     f28:	8b 89       	ldd	r24, Y+19	; 0x13
 	conf->ctrlb |= (uint8_t)res | (uint8_t)sign;
 
 	conf->refctrl &= ~ADC_REFSEL_gm;
-     f2a:	9b 89       	ldd	r25, Y+19	; 0x13
+     f2a:	9c 89       	ldd	r25, Y+20	; 0x14
      f2c:	9f 78       	andi	r25, 0x8F	; 143
-     f2e:	9b 8b       	std	Y+19, r25	; 0x13
+     f2e:	9c 8b       	std	Y+20, r25	; 0x14
 	Assert(base_ev_ch <= 3);
 #endif
 
@@ -2759,16 +2759,16 @@ static inline void adc_set_conversion_parameters(struct adc_config *conf,
 		conf->ctrlb &= ~ADC_FREERUN_bm;
      f30:	81 7e       	andi	r24, 0xE1	; 225
      f32:	80 61       	ori	r24, 0x10	; 16
-     f34:	8a 8b       	std	Y+18, r24	; 0x12
+     f34:	8b 8b       	std	Y+19, r24	; 0x13
 		conf->evctrl = ADC_EVACT_NONE_gc;
-     f36:	1c 8a       	std	Y+20, r1	; 0x14
+     f36:	1d 8a       	std	Y+21, r1	; 0x15
 		psc = ADC_PRESCALER_DIV256_gc;
 	} else {
 		psc = ADC_PRESCALER_DIV512_gc;
 	}
 
 	conf->prescaler = psc;
-     f38:	1d 8a       	std	Y+21, r1	; 0x15
+     f38:	1e 8a       	std	Y+22, r1	; 0x16
 #if XMEGA_E
 		ch_conf->ctrl = adcch_get_gain_setting(gain) |
 				ADC_CH_INPUTMODE_DIFFWGAINL_gc;
@@ -2776,26 +2776,26 @@ static inline void adc_set_conversion_parameters(struct adc_config *conf,
 		Assert(gain == 1);
 		ch_conf->ctrl = ADC_CH_INPUTMODE_DIFF_gc;
      f3a:	82 e0       	ldi	r24, 0x02	; 2
-     f3c:	88 8f       	std	Y+24, r24	; 0x18
+     f3c:	89 8f       	std	Y+25, r24	; 0x19
 #endif
 		ch_conf->muxctrl = (pos << ADC_CH_MUXPOS_gp) |
      f3e:	89 e2       	ldi	r24, 0x29	; 41
-     f40:	89 8f       	std	Y+25, r24	; 0x19
-	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_ON, ADC_RES_12, ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
-	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
+     f40:	8a 8f       	std	Y+26, r24	; 0x1a
+	ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
+	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 2, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
 	adc_set_clock_rate(&adc_conf, 500000UL);
-	adcch_set_input(&adcch_conf, ADCCH_POS_PIN5, ADCCH_NEG_PIN1, ADC_GAIN); 
+	adcch_set_input(&adcch_conf, ADCCH_POS_PIN5, ADCCH_NEG_PIN1, ADC_GAIN);
 	
 	adc_write_configuration(&MY_ADC, &adc_conf);
      f42:	be 01       	movw	r22, r28
-     f44:	6f 5e       	subi	r22, 0xEF	; 239
+     f44:	6e 5e       	subi	r22, 0xEE	; 238
      f46:	7f 4f       	sbci	r23, 0xFF	; 255
      f48:	80 e0       	ldi	r24, 0x00	; 0
      f4a:	92 e0       	ldi	r25, 0x02	; 2
      f4c:	42 de       	rcall	.-892    	; 0xbd2 <adc_write_configuration>
 	adcch_write_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf);
      f4e:	ae 01       	movw	r20, r28
-     f50:	48 5e       	subi	r20, 0xE8	; 232
+     f50:	47 5e       	subi	r20, 0xE7	; 231
      f52:	5f 4f       	sbci	r21, 0xFF	; 255
      f54:	61 e0       	ldi	r22, 0x01	; 1
      f56:	80 e0       	ldi	r24, 0x00	; 0
@@ -2830,28 +2830,28 @@ static inline bool usart_serial_init(usart_if usart, const
      f80:	e6 e0       	ldi	r30, 0x06	; 6
      f82:	f0 e2       	ldi	r31, 0x20	; 32
      f84:	84 81       	ldd	r24, Z+4	; 0x04
-     f86:	8d 8b       	std	Y+21, r24	; 0x15
+     f86:	8e 8b       	std	Y+22, r24	; 0x16
 	usart_rs232_options.paritytype   = options->paritytype;
      f88:	85 81       	ldd	r24, Z+5	; 0x05
-     f8a:	8e 8b       	std	Y+22, r24	; 0x16
+     f8a:	8f 8b       	std	Y+23, r24	; 0x17
 	usart_rs232_options.stopbits     = options->stopbits;
      f8c:	86 81       	ldd	r24, Z+6	; 0x06
-     f8e:	8f 8b       	std	Y+23, r24	; 0x17
+     f8e:	88 8f       	std	Y+24, r24	; 0x18
 	usart_rs232_options.baudrate     = options->baudrate;
      f90:	80 81       	ld	r24, Z
      f92:	91 81       	ldd	r25, Z+1	; 0x01
      f94:	a2 81       	ldd	r26, Z+2	; 0x02
      f96:	b3 81       	ldd	r27, Z+3	; 0x03
-     f98:	89 8b       	std	Y+17, r24	; 0x11
-     f9a:	9a 8b       	std	Y+18, r25	; 0x12
-     f9c:	ab 8b       	std	Y+19, r26	; 0x13
+     f98:	8a 8b       	std	Y+18, r24	; 0x12
+     f9a:	9b 8b       	std	Y+19, r25	; 0x13
+     f9c:	ac 8b       	std	Y+20, r26	; 0x14
 		sysclk_enable_module(SYSCLK_PORT_D,PR_USART1_bm);
 	}
 #endif
 #ifdef USARTE0
 	if((uint16_t)usart == (uint16_t)&USARTE0) {
 		sysclk_enable_module(SYSCLK_PORT_E,PR_USART0_bm);
-     f9e:	bc 8b       	std	Y+20, r27	; 0x14
+     f9e:	bd 8b       	std	Y+21, r27	; 0x15
      fa0:	60 e1       	ldi	r22, 0x10	; 16
      fa2:	85 e0       	ldi	r24, 0x05	; 5
 #ifdef USARTF1
@@ -2862,7 +2862,7 @@ static inline bool usart_serial_init(usart_if usart, const
 	if (usart_init_rs232(usart, &usart_rs232_options)) {
      fa4:	6d df       	rcall	.-294    	; 0xe80 <sysclk_enable_module>
      fa6:	be 01       	movw	r22, r28
-     fa8:	6f 5e       	subi	r22, 0xEF	; 239
+     fa8:	6e 5e       	subi	r22, 0xEE	; 238
      faa:	7f 4f       	sbci	r23, 0xFF	; 255
      fac:	80 ea       	ldi	r24, 0xA0	; 160
      fae:	9a e0       	ldi	r25, 0x0A	; 10
@@ -2888,7 +2888,7 @@ static inline bool usart_serial_init(usart_if usart, const
      fbe:	80 93 81 06 	sts	0x0681, r24	; 0x800681 <__TEXT_REGION_LENGTH__+0x7be681>
 	
 	float fResult=0,fResult_mv,fResult_mg;
-	char ucResult[15], *pcDot; //8 cyfr przed przecinkiem, 6 po, null
+	char ucResult[VOLTAGE_STRING_LENGTH], *pcDot; 
 	unsigned short usRepCounter;
 	char cDemand;
 	adc_enable(&MY_ADC);
@@ -2904,14 +2904,14 @@ static inline bool usart_serial_init(usart_if usart, const
      fc8:	41 2c       	mov	r4, r1
      fca:	51 2c       	mov	r5, r1
      fcc:	32 01       	movw	r6, r4
-		
+	
 	
 	while(1) {
 		
 		
 		scanf("%c", &cDemand); //czekanie na jakis znak
      fce:	5e 01       	movw	r10, r28
-     fd0:	20 e1       	ldi	r18, 0x10	; 16
+     fd0:	21 e1       	ldi	r18, 0x11	; 17
      fd2:	a2 0e       	add	r10, r18
      fd4:	b1 1c       	adc	r11, r1
  */
@@ -2930,19 +2930,18 @@ static inline void adc_clear_interrupt_flag(ADC_t *adc, uint8_t ch_mask)
 	adc->INTFLAGS = ch_mask << ADC_CH0IF_bp;
      fda:	99 24       	eor	r9, r9
      fdc:	93 94       	inc	r9
-		}
 		fResult /= SAMPLES_PER_MEASUREMENT;
 		fResult_mv = (fResult * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1));
 		fResult_mv /= ADC_GAIN;
 		fResult_mg = fResult_mv*STRAIN_mV_to_mg + STRAIN_offset;
+		
 		sprintf(ucResult, "%f",fResult_mg);
      fde:	ce 01       	movw	r24, r28
      fe0:	01 96       	adiw	r24, 0x01	; 1
      fe2:	6c 01       	movw	r12, r24
 		pcDot = strchr(ucResult, '.');
-	
 		if(pcDot)
-			*pcDot = ',';
+		*pcDot = ',';
      fe4:	0f 2e       	mov	r0, r31
      fe6:	fc e2       	ldi	r31, 0x2C	; 44
      fe8:	8f 2e       	mov	r8, r31
@@ -2954,7 +2953,7 @@ static inline void adc_clear_interrupt_flag(ADC_t *adc, uint8_t ch_mask)
      ff0:	2f 2e       	mov	r2, r31
      ff2:	f0 e2       	ldi	r31, 0x20	; 32
      ff4:	3f 2e       	mov	r3, r31
-		
+	
 	
 	while(1) {
 		
@@ -2983,11 +2982,11 @@ static inline irqflags_t cpu_irq_save(void)
 {
 	volatile irqflags_t flags = SREG;
     1016:	8f b7       	in	r24, 0x3f	; 63
-    1018:	89 8b       	std	Y+17, r24	; 0x11
+    1018:	8a 8b       	std	Y+18, r24	; 0x12
 	cpu_irq_disable();
     101a:	f8 94       	cli
 	return flags;
-    101c:	99 89       	ldd	r25, Y+17	; 0x11
+    101c:	9a 89       	ldd	r25, Y+18	; 0x12
  */
 static inline void adc_start_conversion(ADC_t *adc, uint8_t ch_mask)
 {
@@ -3035,11 +3034,11 @@ static inline irqflags_t cpu_irq_save(void)
 {
 	volatile irqflags_t flags = SREG;
     1032:	8f b7       	in	r24, 0x3f	; 63
-    1034:	88 8f       	std	Y+24, r24	; 0x18
+    1034:	89 8f       	std	Y+25, r24	; 0x19
 	cpu_irq_disable();
     1036:	f8 94       	cli
 	return flags;
-    1038:	88 8d       	ldd	r24, Y+24	; 0x18
+    1038:	89 8d       	ldd	r24, Y+25	; 0x19
 	ADC_CH_t *adc_ch;
 
 	adc_ch = adc_get_channel(adc, ch_mask);
@@ -3056,7 +3055,7 @@ static inline void cpu_irq_restore(irqflags_t flags)
     103c:	75 a1       	ldd	r23, Z+37	; 0x25
 		
 		for(usRepCounter=0;usRepCounter<SAMPLES_PER_MEASUREMENT; usRepCounter++){
-		
+			
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
 			fResult +=  -adc_get_signed_result(&MY_ADC, MY_ADC_CH);
@@ -3101,6 +3100,7 @@ static inline void cpu_irq_restore(irqflags_t flags)
     1082:	40 e0       	ldi	r20, 0x00	; 0
 		fResult_mv /= ADC_GAIN;
 		fResult_mg = fResult_mv*STRAIN_mV_to_mg + STRAIN_offset;
+		
 		sprintf(ucResult, "%f",fResult_mg);
     1084:	5a e3       	ldi	r21, 0x3A	; 58
     1086:	98 d1       	rcall	.+816    	; 0x13b8 <__mulsf3>
@@ -3150,13 +3150,12 @@ static inline void cpu_irq_restore(irqflags_t flags)
     10dc:	70 e0       	ldi	r23, 0x00	; 0
     10de:	c6 01       	movw	r24, r12
     10e0:	56 d6       	rcall	.+3244   	; 0x1d8e <strchr>
-	
 		if(pcDot)
     10e2:	cd bf       	out	0x3d, r28	; 61
     10e4:	de bf       	out	0x3e, r29	; 62
     10e6:	00 97       	sbiw	r24, 0x00	; 0
     10e8:	11 f0       	breq	.+4      	; 0x10ee <__EEPROM_REGION_LENGTH__+0xee>
-			*pcDot = ',';
+		*pcDot = ',';
     10ea:	fc 01       	movw	r30, r24
     10ec:	80 82       	st	Z, r8
 		

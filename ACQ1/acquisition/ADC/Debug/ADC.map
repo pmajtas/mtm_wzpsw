@@ -2047,7 +2047,7 @@ END GROUP
  .debug_frame   0x0000063c       0x94 src/ASF/common/services/clock/xmega/sysclk.o
  .debug_frame   0x000006d0       0x60 src/main.o
 
-.debug_str      0x00000000    0x2fcac
+.debug_str      0x00000000    0x2fcc5
  *(.debug_str)
  .debug_str     0x00000000     0x21e4 D:/AGH/Atmel/7.0/Packs/atmel/XMEGAA_DFP/1.2.141/gcc/dev/atxmega256a3bu/avrxmega6/crtatxmega256a3bu.o
  .debug_str     0x000021e4    0x28e25 src/ASF/common/utils/stdio/read.o
@@ -2064,8 +2064,8 @@ END GROUP
                               0x2980f (size before relaxing)
  .debug_str     0x0002e63b      0x232 src/ASF/common/services/clock/xmega/sysclk.o
                               0x2ac54 (size before relaxing)
- .debug_str     0x0002e86d     0x143f src/main.o
-                              0x2d1db (size before relaxing)
+ .debug_str     0x0002e86d     0x1458 src/main.o
+                              0x2d1f4 (size before relaxing)
 
 .debug_loc      0x00000000     0x25a9
  *(.debug_loc)
@@ -2106,7 +2106,7 @@ END GROUP
  .debug_ranges  0x00000170       0x20 src/ASF/xmega/drivers/nvm/nvm_asm.o
  .debug_ranges  0x00000190       0x68 src/main.o
 
-.debug_macro    0x00000000     0xa67e
+.debug_macro    0x00000000     0xa684
  *(.debug_macro)
  .debug_macro   0x00000000      0x16d src/ASF/common/utils/stdio/read.o
  .debug_macro   0x0000016d      0xa8a src/ASF/common/utils/stdio/read.o
@@ -2160,6 +2160,6 @@ END GROUP
  .debug_macro   0x00009f8a      0x1a3 src/ASF/common/services/sleepmgr/xmega/sleepmgr.o
  .debug_macro   0x0000a12d      0x1e6 src/ASF/common/services/clock/xmega/sysclk.o
  .debug_macro   0x0000a313       0x26 src/ASF/common/services/clock/xmega/sysclk.o
- .debug_macro   0x0000a339      0x345 src/main.o
+ .debug_macro   0x0000a339      0x34b src/main.o
 OUTPUT(ADC.elf elf32-avr)
 LOAD linker stubs

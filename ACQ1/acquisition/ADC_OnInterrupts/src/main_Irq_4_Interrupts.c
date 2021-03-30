@@ -26,6 +26,11 @@ static void evsys_init(void)
 
 }
 
+static void ADC_CALLBACK(ADC_t *adc, uint8_t ch_mask, adc_result_t result){
+	
+	printf(" %d  \n\r" ,result);
+}
+
 static void adc_init(void)
 {
 	struct adc_config adc_conf; //konfiguracja adc
@@ -38,6 +43,8 @@ static void adc_init(void)
 	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_EVENT_SINGLE, 1, 0); 
 	adc_set_clock_rate(&adc_conf, 500000UL);
 	adcch_set_input(&adcch_conf, ADCCH_POS_PIN1, ADCCH_NEG_NONE, ADC_GAIN);
+	adcch_enable_interrupt(&adcch_conf);
+	adc_set_callback(&MY_ADC, &ADC_CALLBACK);
 	
 	adc_write_configuration(&MY_ADC, &adc_conf);
 	adcch_write_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf);
@@ -53,7 +60,8 @@ int main (void) {
 		.stopbits = false
 	};
 	
-	
+	cpu_irq_enable();
+	pmic_init();
 	sysclk_init();
 	evsys_init();
 	tc_init();
@@ -61,15 +69,10 @@ int main (void) {
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
 	
-	
-	unsigned char ucResult;
 	adc_enable(&MY_ADC);
 		
 	while(1) {	
-		
-			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			ucResult =  adc_get_unsigned_result(&MY_ADC, MY_ADC_CH);
-			printf(" %d  \n\r" ,ucResult);
+
 
 	}
 }
