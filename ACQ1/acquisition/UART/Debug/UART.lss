@@ -1695,8 +1695,8 @@ static inline bool usart_serial_init(usart_if usart, const
  970:	30 91 03 20 	lds	r19, 0x2003	; 0x802003 <__malloc_heap_start+0x1>
  974:	20 93 1a 20 	sts	0x201A, r18	; 0x80201a <__brkval>
  978:	30 93 1b 20 	sts	0x201B, r19	; 0x80201b <__brkval+0x1>
- 97c:	20 91 00 20 	lds	r18, 0x2000	; 0x802000 <__data_start>
- 980:	30 91 01 20 	lds	r19, 0x2001	; 0x802001 <__data_start+0x1>
+ 97c:	20 91 00 20 	lds	r18, 0x2000	; 0x802000 <__DATA_REGION_ORIGIN__>
+ 980:	30 91 01 20 	lds	r19, 0x2001	; 0x802001 <__DATA_REGION_ORIGIN__+0x1>
  984:	21 15       	cp	r18, r1
  986:	31 05       	cpc	r19, r1
  988:	41 f4       	brne	.+16     	; 0x99a <malloc+0xea>

@@ -33,7 +33,7 @@ static void adc_init(void)
 	ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
 	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, nr kana³u 0
 	adc_set_clock_rate(&adc_conf, 500000UL);
-	adcch_set_input(&adcch_conf, ADCCH_POS_PIN5, ADCCH_NEG_PIN1, ADC_GAIN);
+	adcch_set_input(&adcch_conf, ADCCH_POS_PIN1, ADCCH_NEG_PIN5, ADC_GAIN);
 	
 	adc_write_configuration(&MY_ADC, &adc_conf);
 	adcch_write_configuration(&MY_ADC, MY_ADC_CH, &adcch_conf);
@@ -70,7 +70,7 @@ int main (void) {
 			
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			fResult +=  -adc_get_signed_result(&MY_ADC, MY_ADC_CH);
+			fResult +=  adc_get_signed_result(&MY_ADC, MY_ADC_CH);
 
 		}
 		fResult /= SAMPLES_PER_MEASUREMENT;
