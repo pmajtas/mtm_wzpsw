@@ -10,7 +10,7 @@
 #define ADC_TOP_VALUE 2047
 #define ADC_REF_VOLTAGE_mV 1000
 #define ADC_GAIN 64
-#define SAMPLES_PER_MEASUREMENT 1
+#define SAMPLES_PER_MEASUREMENT 2048
 
 //Float to string parameters
 #define  VOLTAGE_STRING_LENGTH 16
@@ -78,7 +78,7 @@ int main (void) {
 		fResult_mv /= ADC_GAIN;
 		fResult_mg = fResult_mv*STRAIN_mV_to_mg + STRAIN_offset;
 		
-		sprintf(ucResult, "%f",fResult);
+		sprintf(ucResult, "%f",fResult_mv);
 		pcDot = strchr(ucResult, '.');
 		if(pcDot)
 		*pcDot = ',';
