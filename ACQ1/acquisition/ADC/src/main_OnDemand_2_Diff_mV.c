@@ -20,7 +20,7 @@ static void adc_init(void)
 	
 	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_ON, ADC_RES_12,
 	ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
-	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 2, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
+	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, kana³ów wyzwalanych wydarzeniem - 0
 	adc_set_clock_rate(&adc_conf, 200000UL);
 	adcch_set_input(&adcch_conf, ADCCH_POS_PIN5, ADCCH_NEG_PIN1, ADC_GAIN); 
 	
