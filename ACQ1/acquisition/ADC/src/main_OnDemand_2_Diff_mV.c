@@ -52,6 +52,8 @@ int main (void) {
 	while(1) {
 		
 		scanf("%c", &cDemand); //czekanie na jakis znak
+		
+		fResult = 0;
 		for(ucRepCounter=0;ucRepCounter<SAMPLES_PER_MEASUREMENT; ucRepCounter++){
 		
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);

@@ -15,3 +15,5 @@
 .\bin\main.o: keyboard.h
 .\bin\main.o: ..\..\Source\include\semphr.h
 .\bin\main.o: ..\..\Source\include\queue.h
+.\bin\main.o: string.h
+.\bin\main.o: led.h

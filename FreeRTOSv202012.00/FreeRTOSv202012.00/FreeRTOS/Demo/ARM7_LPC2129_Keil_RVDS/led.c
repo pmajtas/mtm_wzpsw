@@ -6,6 +6,8 @@
 #define LED2_bm (1<<18)
 #define LED3_bm (1<<19)
 
+typedef enum eDirections{Left,Right} eDirections;
+
 
 void Led_Toggle(unsigned char ucLedIndeks)
 {
@@ -48,7 +50,7 @@ void Led_Init(void)
 {
 	IO1DIR = LED0_bm | LED1_bm | LED2_bm | LED3_bm ;
 }
-
+/*
 void Led_Set(unsigned char ucLedIndeks){
 	
 	switch(ucLedIndeks){
@@ -93,4 +95,59 @@ void Led_Clr(unsigned char ucLedIndeks){
 		
 	}
 	
+} */
+
+void LedOn(unsigned char ucLedIndeks)
+{
+	IO1CLR =  (LED0_bm | LED1_bm | LED2_bm | LED3_bm );
+	
+	switch(ucLedIndeks)
+		{
+		case(0):
+			IO1SET = LED0_bm ;
+			break;
+		
+		case(1):
+			IO1SET = LED1_bm ;
+			break;
+		
+		case(2):
+			IO1SET = LED2_bm ;
+			break;
+		
+		case(3):
+			IO1SET =  LED3_bm ;
+			break;
+
+		}
+}
+
+void LedStep(enum  eDirections DirectStep)
+{
+	static unsigned int LedPoint;
+	
+	switch(DirectStep)
+	{
+		case(Left):
+			LedPoint++;
+			break;
+		
+		case(Right):
+			LedPoint--;
+			break;
+		
+		default:
+			break;
+	}
+	LedOn(LedPoint%4);
+}
+
+void LedStepLeft(void)
+{
+	LedStep(Left);
+}
+
+void LedStepRight(void)
+{
+	LedStep(Right);
 }

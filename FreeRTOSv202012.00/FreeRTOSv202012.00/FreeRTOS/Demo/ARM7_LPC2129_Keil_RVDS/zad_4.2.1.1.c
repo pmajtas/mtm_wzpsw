@@ -5,7 +5,6 @@
 #include "semphr.h"
 #include "queue.h"
 #include "string.h"
-#include "led.h"
 
 QueueHandle_t QueueUart;
 
@@ -30,11 +29,7 @@ void LettersTx (void *pvParameters){
 		AppendUIntToString(uiTime , cTxStr);
 		AppendString("\n",cTxStr);
 		uiStart = xTaskGetTickCount();
-		if (errQUEUE_FULL == xQueueSend(QueueUart, cTxStr, 0))
-		{
-				Led_Toggle(0);
-		}
-		//xQueueSend(QueueUart, cTxStr,0);
+		xQueueSend(QueueUart, cTxStr,0);
 		uiTime = xTaskGetTickCount() - uiStart;
 		vTaskDelay(300);
 	}
@@ -46,7 +41,7 @@ void KeyboardTx (void *pvParameters){
 		
 		while(eKeyboardRead() == RELEASED){}
 		xQueueSend(QueueUart, "-Keyboard-\n",0);
-		vTaskDelay(100);
+		vTaskDelay(300);
 	}
 }
 
@@ -57,7 +52,7 @@ int main( void ){
 	UART_InitWithInt(300);
 	QueueUart = xQueueCreate(5, 20);
 	xTaskCreate(LettersTx, NULL, 128, NULL, 1, NULL );
-	xTaskCreate(KeyboardTx, NULL, 128, NULL, 2, NULL );
+	xTaskCreate(KeyboardTx, NULL, 128, NULL, 1, NULL );
 	xTaskCreate(Rtos_Transmiter_SendString, NULL, 128, NULL, 1, NULL );
 	vTaskStartScheduler();
 	
