@@ -1,9 +1,15 @@
 #include <LPC21xx.H>
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+
 #include "servo.h"
 #include "led.h"
 #include "timer_interrupts.h"
 
 #define P10_bm (1<<10)
+
+QueueHandle_t QueueServo;
 
 enum ServoState{CALLIB,IDLE, IN_PROGRESS};
 	
@@ -43,10 +49,19 @@ void Automat(void){
 				break;
 					
 			case IDLE :
+				
+				
 				if(sServo.uiCurrentPosition != sServo.uiDesiredPosition){
 					sServo.eState = IN_PROGRESS;}
 				else{
+					struct Servo sServoBuffer;
+					if( xQueueReceive(QueueServo, &sServoBuffer,0) == pdPass){
+						sServo.uiDesiredPosition = sServoBuffer.uiDesiredPosition;
+						sServo.eState = sServoBuffer.eState;
+					}
+					else{
 					sServo.eState = IDLE;}
+				}
 				break;
 			
 			case IN_PROGRESS :
@@ -64,22 +79,34 @@ void Automat(void){
 			}
 	}
 
-void ServoInit(unsigned int uiServoFrequency){
-	Timer1Interrupts_Init((1000000/uiServoFrequency), &Automat); //spytac jak szybko na plytce
+void ServoInit(void /*unsigned int uiServoFrequency*/){
+	//zastapiono mechanizmem rtos
+	//Timer1Interrupts_Init((1000000/uiServoFrequency), &Automat); //spytac jak szybko na plytce
 	Led_Init();
 	DetectorInit();
 	ServoCallib();
+	QueueServo = xQueueCreate( 20, 12 );
 }
 	
 void ServoCallib(void){
 	
-	sServo.eState = CALLIB;
-	while(sServo.eState!=IDLE){}
+	//sServo.eState = CALLIB;
+	struct Servo sServoQ = {CALLIB,0 , 0};
+  xQueueSend(QueueServo, &sServoQ, 0);
+	
 }
 
 void ServoGoTo(unsigned int uiPosition){
 	
 	sServo.uiDesiredPosition = uiPosition;
 	sServo.eState = IN_PROGRESS;
-	while(sServo.eState!=IDLE){}
+
+}
+
+void ServoCtr(void *pvParameters){
+
+	while(1){
+		Automat();
+		vTaskDelay(*((TickType_t*)pvParameters));
+	}
 }

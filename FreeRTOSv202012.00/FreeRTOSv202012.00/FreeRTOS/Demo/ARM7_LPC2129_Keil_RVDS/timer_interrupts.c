@@ -38,7 +38,7 @@ __irq void Timer0IRQHandler(){
 __irq void Timer1IRQHandler(){
 
 	T1IR=mMR0_INTERRUPT; 	// skasowanie flagi przerwania 
-	ptrTimer1InterruptFunction() ;		// cos do roboty
+	(*ptrTimer1InterruptFunction)() ;		// cos do roboty
 	VICVectAddr=0x00; 	// potwierdzenie wykonania procedury obslugi przerwania
 }
 
@@ -67,14 +67,14 @@ void Timer0Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)()
 
 void Timer1Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)() ){ // microseconds
 
-	ptrTimer1InterruptFunction = ptrInterruptFunction;
+	ptrTimer1InterruptFunction = (*ptrInterruptFunction);
         // interrupts //VICIntEnable odblokowywuje przerwania z danych kanalow
 											//VICVectCntlx nadanie adresu kanalu, z ktorego bedzie przerwanie, nadaje priorytet przerwaniom z kanalow
 											//VICVectAddrx adres obslugi przerwania (adres pierwszego rozkazu programu do obslugi przerwania).
 
 	VICIntEnable |= (0x1 << VIC_TIMER1_CHANNEL_NR);            // Enable Timer 1 interrupt channel 
-	VICVectCntl13  = mIRQ_SLOT_ENABLE | VIC_TIMER1_CHANNEL_NR;  // Enable Slot 13 and assign it to Timer 1 interrupt channel //0 to najwyzszy priorytet
-	VICVectAddr13 = (unsigned long) Timer1IRQHandler; 	   // Set to Slot 1 Address of Interrupt Service Routine 
+	VICVectCntl1  = mIRQ_SLOT_ENABLE | VIC_TIMER1_CHANNEL_NR;  // Enable Slot 13 and assign it to Timer 1 interrupt channel //0 to najwyzszy priorytet
+	VICVectAddr1 = (unsigned long) Timer1IRQHandler; 	   // Set to Slot 1 Address of Interrupt Service Routine 
 
         // match module
 
