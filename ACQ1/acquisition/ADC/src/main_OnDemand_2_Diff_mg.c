@@ -16,8 +16,8 @@
 #define  VOLTAGE_STRING_LENGTH 16
 
 //STRAIN parameters
-#define STRAIN_slope_factor 123808.0
-#define STRAIN_offset -845345.0
+#define STRAIN_slope_factor 123.8080
+#define STRAIN_offset -845.3450
 #define STRAIN_mV_to_mg (ADC_TOP_VALUE+1)*(ADC_GAIN)/ADC_REF_VOLTAGE_mV *STRAIN_slope_factor 
 
 
@@ -66,6 +66,7 @@ int main (void) {
 		
 		scanf("%c", &cDemand); //czekanie na jakis znak
 		
+		fResult =0;
 		for(usRepCounter=0;usRepCounter<SAMPLES_PER_MEASUREMENT; usRepCounter++){
 		
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
