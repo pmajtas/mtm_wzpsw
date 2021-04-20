@@ -8,9 +8,9 @@
 
 //ADC config
 #define ADC_TOP_VALUE 2047
-#define ADC_REF_VOLTAGE_mV 1000
+#define ADC_REF_VOLTAGE_mV 1000.0
 #define ADC_GAIN 64
-#define SAMPLES_PER_MEASUREMENT 2048
+#define SAMPLES_PER_MEASUREMENT 1.0
 
 //Float to string parameters
 #define  VOLTAGE_STRING_LENGTH 16
@@ -32,7 +32,7 @@ static void adc_init(void)
 	adc_set_conversion_parameters(&adc_conf, ADC_SIGN_ON, ADC_RES_12,
 	ADC_REF_BANDGAP); //pod wskazan¹ konfiguracjê wpisujemy: wynik z znakiem, rozdzielczoœæ 12 bitów,  vref = 1V; rozdzielczosc moze byc jeszcze 8 bitowa lub 12 left-adjusted, LSB = Vref/ 2^res = 0.24mV
 	adc_set_conversion_trigger(&adc_conf, ADC_TRIG_MANUAL, 1, 0); //ustawienia triggera, jest on rêczny, liczba kana³ów 1, nr kana³u 0
-	adc_set_clock_rate(&adc_conf, 500000UL);
+	adc_set_clock_rate(&adc_conf, 200000UL);
 	adcch_set_input(&adcch_conf, ADCCH_POS_PIN1, ADCCH_NEG_PIN5, ADC_GAIN);
 	
 	adc_write_configuration(&MY_ADC, &adc_conf);
@@ -54,7 +54,7 @@ int main (void) {
 	stdio_serial_init(&USARTE0, &USART_SERIAL_OPTIONS);
 	ioport_set_pin_dir(UART_TXPIN, IOPORT_DIR_OUTPUT);
 	
-	float fResult=0,fResult_mv,fResult_mg;
+	float fResult=0,fResult_mv=0,fResult_mg;
 	char ucResult[VOLTAGE_STRING_LENGTH], *pcDot; 
 	unsigned short usRepCounter;
 	char cDemand;
@@ -64,18 +64,18 @@ int main (void) {
 	while(1) {
 		
 		
-		scanf("%c", &cDemand); //czekanie na jakis znak
+		scanf("%c", &cDemand); //czekanie na zadanie
 		fResult =0;
 		for(usRepCounter=0;usRepCounter<SAMPLES_PER_MEASUREMENT; usRepCounter++){
 			
 			adc_start_conversion(&MY_ADC, MY_ADC_CH);
 			adc_wait_for_interrupt_flag(&MY_ADC, MY_ADC_CH);
-			fResult +=  adc_get_signed_result(&MY_ADC, MY_ADC_CH);
+			fResult =  fResult + (float) adc_get_signed_result(&MY_ADC, MY_ADC_CH);
 
 		}
 		fResult /= SAMPLES_PER_MEASUREMENT;
-		fResult_mv = (fResult * ADC_REF_VOLTAGE_mV)/((ADC_TOP_VALUE+1));
-		fResult_mv /= ADC_GAIN;
+		fResult_mv = fResult * ADC_REF_VOLTAGE_mV/(ADC_TOP_VALUE+1) /ADC_GAIN;
+		//fResult_mv /= ADC_GAIN;
 		fResult_mg = fResult_mv*STRAIN_mV_to_mg + STRAIN_offset;
 		
 		sprintf(ucResult, "%f",fResult_mv);

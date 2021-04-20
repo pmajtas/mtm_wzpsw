@@ -2,13 +2,6 @@
 #include "task.h"
 #include "led.h"
 
-void Delay(unsigned int uiMiliSec) {
-
-unsigned int uiLoopCtr, uiDelayLoopCount;
-uiDelayLoopCount = uiMiliSec*12000;
-	for(uiLoopCtr=0;uiLoopCtr<uiDelayLoopCount;uiLoopCtr++) {}
-
-}
 
 void LedBlink( void *pvParameters ){
 	
