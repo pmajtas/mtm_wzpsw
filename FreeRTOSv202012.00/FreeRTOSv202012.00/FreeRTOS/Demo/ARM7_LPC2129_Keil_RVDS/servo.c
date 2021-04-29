@@ -11,7 +11,7 @@
 
 QueueHandle_t QueueServo;
 
-enum ServoState{CALLIB,IDLE, IN_PROGRESS};
+enum ServoState{CALLIB, IN_PROGRESS};
 	
 	struct Servo {
 		enum ServoState eState; 
@@ -45,25 +45,9 @@ void Automat(void){
 				else{
 					sServo.uiCurrentPosition=0;
 					sServo.uiDesiredPosition=0;
-					sServo.eState = IDLE;}
-				break;
-					
-			case IDLE :
-				
-				
-				if(sServo.uiCurrentPosition != sServo.uiDesiredPosition){
 					sServo.eState = IN_PROGRESS;}
-				else{
-					struct Servo sServoBuffer;
-					if( xQueueReceive(QueueServo, &sServoBuffer,0) == pdPass){
-						sServo.uiDesiredPosition = sServoBuffer.uiDesiredPosition;
-						sServo.eState = sServoBuffer.eState;
-					}
-					else{
-					sServo.eState = IDLE;}
-				}
 				break;
-			
+				
 			case IN_PROGRESS :
 				if(sServo.uiCurrentPosition != sServo.uiDesiredPosition){
 					LedStepLeft();
@@ -71,7 +55,10 @@ void Automat(void){
 					sServo.uiCurrentPosition%=48;}
 					
 				else{
-					sServo.eState = IDLE;}
+					struct Servo sServoBuffer;
+					xQueueReceive(QueueServo, &sServoBuffer,portMAX_DELAY); //czekanie az bedzie sie dalo odczytac z kolejki
+					sServo.uiDesiredPosition = sServoBuffer.uiDesiredPosition;
+					sServo.eState = sServoBuffer.eState;}
 				break;		
 								
 			default:
@@ -79,18 +66,16 @@ void Automat(void){
 			}
 	}
 
-void ServoInit(void /*unsigned int uiServoFrequency*/){
-	//zastapiono mechanizmem rtos
-	//Timer1Interrupts_Init((1000000/uiServoFrequency), &Automat); //spytac jak szybko na plytce
+void ServoInit(void ){
+
+	QueueServo = xQueueCreate( 20, 12 ); // 12 bytes
 	Led_Init();
 	DetectorInit();
 	ServoCallib();
-	QueueServo = xQueueCreate( 20, 12 );
 }
 	
 void ServoCallib(void){
 	
-	//sServo.eState = CALLIB;
 	struct Servo sServoQ = {CALLIB,0 , 0};
   xQueueSend(QueueServo, &sServoQ, 0);
 	
@@ -98,8 +83,9 @@ void ServoCallib(void){
 
 void ServoGoTo(unsigned int uiPosition){
 	
-	sServo.uiDesiredPosition = uiPosition;
-	sServo.eState = IN_PROGRESS;
+	struct Servo sServoQ = {IN_PROGRESS, 0 , 0};
+	sServoQ.uiDesiredPosition = uiPosition;
+  xQueueSend(QueueServo, &sServoQ, 0);
 
 }
 
