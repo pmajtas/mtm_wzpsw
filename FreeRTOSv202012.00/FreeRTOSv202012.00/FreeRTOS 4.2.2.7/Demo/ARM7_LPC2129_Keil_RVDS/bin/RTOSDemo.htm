@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\bin\RTOSDemo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\bin\RTOSDemo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 04 10:22:59 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue May 04 14:03:44 2021
 <BR><P>
 <H3>Maximum Stack Usage =        144 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -44,7 +44,7 @@ Function Pointers
  <LI><a href="#[c]">Keyboard</a> from main.o(.text) referenced from main.o(.text)
  <LI><a href="#[6]">PAbt_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[3]">Reset_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[d]">ServoCtr</a> from servo.o(.text) referenced from main.o(.text)
+ <LI><a href="#[d]">ServoCtr</a> from servo.o(.text) referenced from servo.o(.text)
  <LI><a href="#[4]">Undef_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[12]">__main</a> from __main.o(!!!main) referenced from startup.o(RESET)
  <LI><a href="#[b]">main</a> from main.o(.text) referenced from rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
@@ -201,7 +201,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[b]"></a>main</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[b]"></a>main</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
 <LI>Call Chain = main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
@@ -234,6 +234,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCtr
 </UL>
 
+<P><STRONG><a name="[d]"></a>ServoCtr</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, servo.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 108 + Unknown Stack Size
+<LI>Call Chain = ServoCtr &rArr; Automat &rArr; xQueueReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Automat
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> servo.o(.text)
+</UL>
 <P><STRONG><a name="[22]"></a>ServoCallib</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, servo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116 + Unknown Stack Size
 <LI>Call Chain = ServoCallib &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
@@ -245,13 +253,14 @@ Global Symbols
 <LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Keyboard
 </UL>
 
-<P><STRONG><a name="[28]"></a>ServoInit</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, servo.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124 + Unknown Stack Size
-<LI>Call Chain = ServoInit &rArr; ServoCallib &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
+<P><STRONG><a name="[28]"></a>ServoInit</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, servo.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
+<LI>Call Chain = ServoInit &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericCreate
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_Init
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DetectorInit
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoCallib
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -282,14 +291,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Keyboard
 </UL>
 
-<P><STRONG><a name="[d]"></a>ServoCtr</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, servo.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108 + Unknown Stack Size
-<LI>Call Chain = ServoCtr &rArr; Automat &rArr; xQueueReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
-</UL>
-<BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Automat
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
-</UL>
 <P><STRONG><a name="[a9]"></a>Led_Toggle</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
 
 <P><STRONG><a name="[34]"></a>Led_Init</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, led.o(.text))
@@ -345,6 +346,7 @@ Global Symbols
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddNewTaskToReadyList
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 

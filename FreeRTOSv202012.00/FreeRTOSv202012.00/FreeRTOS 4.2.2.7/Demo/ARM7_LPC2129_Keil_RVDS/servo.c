@@ -83,12 +83,12 @@ void Automat(void){
 	}
 
 void ServoInit(void ){
-
+	
 	QueueServo = xQueueCreate( 16, 20 ); 
 	Led_Init();
 	DetectorInit();
-	//sServo.uiStepTicks = 100;
 	ServoCallib();
+	xTaskCreate(ServoCtr, NULL, 127, NULL, 1, NULL );
 }
 	
 void ServoCallib(void){
@@ -118,7 +118,6 @@ void ServoSpeed(unsigned int uiTicksStep){
 
 	struct Servo sServoBuffer = {IDLE, 0 , 0, 0, 0};
 	sServoBuffer.uiStepTicks = uiTicksStep;
-	//sServoQ.eState = sServo.eState;
   xQueueSend(QueueServo, &sServoBuffer, 0);
 		
 }
@@ -129,7 +128,6 @@ void ServoCtr(void *pvParameters){
 
 	while(1){
 		Automat();
-		//vTaskDelay(*((TickType_t*)pvParameters));
 		
 	}
 }

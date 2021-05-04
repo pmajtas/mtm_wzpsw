@@ -10,13 +10,13 @@ xSemaphoreHandle xSemaphore;
 
 void Rtos_Transmitter_SendString( char ucStringToSend[]){
 
-		xSemaphoreTake(xSemaphore, portMAX_DELAY);
+		xSemaphoreTake(xSemaphore, portMAX_DELAY); // przejmujemy xSemaphore na maksymalna ilosc czasu - 0xffff_ffff
 		Transmiter_SendString(ucStringToSend);
 		while (Transmiter_GetStatus()!=FREE){};
 		xSemaphoreGive( xSemaphore);
 }
 
-void LettersTx (void *pvParameters){ //czas na wyslanie bez wcisnietego przycisku : 0x029A ; z wcisnietym przyciskiem:   0x02FF
+void LettersTx (void *pvParameters){ //czas na wyslanie bez wcisnietego przycisku : 0x0298 ; z wcisnietym przyciskiem:   0x02FF
 																											
 	char cTxStr[TRANSMITER_SIZE];
 	TickType_t uiTime=1,uiStart=0;
@@ -36,9 +36,8 @@ void KeyboardTx (void *pvParameters){
 	
 	while(1){
 		
-		while(eKeyboardRead() == RELEASED){}
-		Rtos_Transmitter_SendString("-Keyboard-\n");
-		vTaskDelay(300);
+		if(eKeyboardRead() != RELEASED)
+			Rtos_Transmitter_SendString("-Keyboard-\n");
 	}
 }
 
