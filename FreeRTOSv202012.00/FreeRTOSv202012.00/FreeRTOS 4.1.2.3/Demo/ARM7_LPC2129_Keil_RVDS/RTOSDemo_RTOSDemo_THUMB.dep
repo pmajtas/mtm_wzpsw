@@ -1,0 +1,129 @@
+Dependencies for Project 'RTOSDemo', Target 'RTOSDemo_THUMB': (DO NOT MODIFY !)
+F (.\Startup.s)(0x5FD91420)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\..\Source\portable\RVDS\ARM7_LPC21xx-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\bin\startup.o --depend .\bin\startup.d)
+F (.\main.c)(0x608ACA26)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\main.o --omf_browse .\bin\main.crf --depend .\bin\main.d)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\semphr.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\queue.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\keyboard.h)(0x607C1ECC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\led.h)(0x607E9077)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\servo.h)(0x608A7FD9)
+F (.\led.c)(0x607EA858)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\led.o --omf_browse .\bin\led.crf --depend .\bin\led.d)
+I (D:\AGH\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\led.h)(0x607E9077)
+F (.\uart.c)(0x607C5350)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\uart.o --omf_browse .\bin\uart.crf --depend .\bin\uart.d)
+I (D:\AGH\Keil\ARM\Inc\Philips\LPC210X.H)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\uart.h)(0x607D672B)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\string.h)(0x607D6641)
+F (.\uart.h)(0x607D672B)()
+F (.\keyboard.c)(0x607C1ECC)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\keyboard.o --omf_browse .\bin\keyboard.crf --depend .\bin\keyboard.d)
+I (D:\AGH\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\keyboard.h)(0x607C1ECC)
+F (.\string.c)(0x607D67DB)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\string.o --omf_browse .\bin\string.crf --depend .\bin\string.d)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\string.h)(0x607D6641)
+F (.\servo.c)(0x608BF07D)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\servo.o --omf_browse .\bin\servo.crf --depend .\bin\servo.d)
+I (D:\AGH\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\queue.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\servo.h)(0x608A7FD9)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\led.h)(0x607E9077)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\timer_interrupts.h)(0x607E90D1)
+F (.\timer_interrupts.c)(0x607EA700)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\timer_interrupts.o --omf_browse .\bin\timer_interrupts.crf --depend .\bin\timer_interrupts.d)
+I (D:\AGH\Keil\ARM\Inc\Philips\LPC21xx.H)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\timer_interrupts.h)(0x607E90D1)
+F (.\timer_interrupts.h)(0x607E90D1)()
+F (..\..\Source\tasks.c)(0x5FD91474)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\tasks.o --omf_browse .\bin\tasks.crf --depend .\bin\tasks.d)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\timers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\stack_macros.h)(0x5FD91473)
+F (..\..\Source\list.c)(0x5FD91473)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\list.o --omf_browse .\bin\list.crf --depend .\bin\list.d)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+F (..\..\Source\queue.c)(0x5FD91474)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\queue.o --omf_browse .\bin\queue.crf --depend .\bin\queue.d)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\queue.h)(0x5FD91473)
+F (..\..\Source\portable\RVDS\ARM7_LPC21xx\port.c)(0x5FD91473)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\port.o --omf_browse .\bin\port.crf --depend .\bin\port.d)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+F (..\..\Source\portable\MemMang\heap_2.c)(0x5FD91473)(--thumb -c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I. -I..\..\Source\portable\RVDS\ARM7_LPC21xx -I..\Common\include -I..\..\Source\include-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips-DARM7_LPC21xx_KEIL_RVDS -DKEIL_THUMB_INTERWORK -o .\bin\heap_2.o --omf_browse .\bin\heap_2.crf --depend .\bin\heap_2.d)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\FreeRTOS.h)(0x5FD91473)
+I (D:\AGH\Keil\ARM\ARMCC\include\stddef.h)(0x51C819B4)
+I (D:\AGH\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Demo\ARM7_LPC2129_Keil_RVDS\FreeRTOSConfig.h)(0x607418D6)
+I (D:\AGH\Keil\ARM\Inc\Philips\lpc21xx.h)(0x51C81BAC)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\projdefs.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\portable.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\deprecated_definitions.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\portable\RVDS\ARM7_LPC21xx\portmacro.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\mpu_wrappers.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\task.h)(0x5FD91473)
+I (C:\Users\malas\OneDrive\Pulpit\WZPSW\mtm_wzpsw\FreeRTOSv202012.00\FreeRTOSv202012.00\FreeRTOS\Source\include\list.h)(0x5FD91473)
+F (..\..\Source\portable\RVDS\ARM7_LPC21xx\portASM.s)(0x5FD91473)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I..\..\Source\portable\RVDS\ARM7_LPC21xx-I D:\AGH\Keil\ARM\RV31\INC-I D:\AGH\Keil\ARM\CMSIS\Include-I D:\AGH\Keil\ARM\Inc\Philips--list .\portasm.lst --xref -o .\bin\portasm.o --depend .\bin\portasm.d)
